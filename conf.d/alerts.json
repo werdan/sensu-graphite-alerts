@@ -1,0 +1,27 @@
+{
+	"alerts" : 
+	[
+		{
+			"name" : "apache_processes",
+			"hostname" : "myproject-live-loadbalancer",
+			"metric" : "summarize(scale(divideSeries(maxSeries(myproject.live.n*.apache.busy),averageSeries(stagestores.live.n*.apache.total)),100),\"5min\")",
+			"from" : "-10min",
+			"comparator" : "gt",
+			"threshold" : "20",
+			"subject" : "WARNING: High number of apache processes",
+			"description": "One of the nodes has high number of Apache busy processes",
+			"email": "root@myproject.com"
+		},
+		{
+			"name" : "healthchecker_response_time",
+			"hostname" : "myproject-live-loadbalancer",
+			"metric" : "summarize(averageSeries(myproject.live.n*.apache.response_time.healthchecker),\"5min\",\"avg\")",
+			"from" : "-10min",
+			"comparator" : "gt",
+			"threshold" : "200",
+			"subject" : "WARNING: healthchecker average response time is too high",
+			"description": "Response time of healthchecker script is higher then average which can tell about potential problems with Cache or DB",
+			"email": "root@myproject.com"
+		}
+	]	
+}

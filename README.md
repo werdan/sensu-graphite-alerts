@@ -1,4 +1,4 @@
-sensu-graphite-alerts
+sensu-graphite-checks
 =====================
 
-Sensu &lt;-> Graphite integration for checks/alerts 
+Sensu checks against Graphite metrics
